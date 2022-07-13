@@ -26,7 +26,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/bloglist-v2");
+// mongoose.connect("mongodb://localhost:27017/bloglist-v2"); //Local mongodb
+mongoose.connect("mongodb+srv://priyanshu1101:priyanshu1101@cluster0.bhvsw.mongodb.net/bloglist-v2")
 
 app.get('/',function(req,res)
 {
