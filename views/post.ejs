@@ -1,0 +1,12 @@
+<%- include("partials/header") -%>
+<div id="content-wrap">
+    <h1><%= blogdata.title %></h1>
+    <p><%= blogdata.description %></p>
+</div>
+    <div class="postbutton">
+        <form action="/delete" method="post">
+        <input type="hidden" name="id" value="<%= blogdata._id %>">
+        <button type="submit" class="btn btn-outline-danger">Remove This Post</button>
+        </form>
+    </div>
+<%- include("partials/footer") -%>

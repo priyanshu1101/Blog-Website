@@ -1,0 +1,16 @@
+<%- include("partials/header") -%>
+<h1>Home</h1>
+<p><%= description %></p>
+<div id="content-wrap">
+<% for(var i=0;i<blogdata.length;i++) {%>
+    <h1><%= blogdata[i].title %></h1>
+    <p><%=blogdata[i].description.substring(0, 100) %> ... <a href="/posts/<%= blogdata[i].title %>">Read More</a> </p>
+    <%}%>
+</div>
+<div class="postbutton">
+    <form action="/compose">
+    <button type="submit" class="btn btn-outline-dark">Post</button>
+    </form>
+</div>
+<%- include("partials/footer") -%>
+
