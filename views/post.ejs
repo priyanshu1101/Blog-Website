@@ -1,12 +1,54 @@
 <%- include("partials/header") -%>
 <div id="content-wrap">
-    <h1><%= blogdata.title %></h1>
-    <p><%= blogdata.description %></p>
+  <h1><%= blogdata.title %></h1>
+  <p><%= blogdata.description %></p>
 </div>
-    <div class="postbutton">
-        <form action="/delete" method="post">
-        <input type="hidden" name="id" value="<%= blogdata._id %>">
-        <button type="submit" class="btn btn-outline-danger">Remove This Post</button>
-        </form>
-    </div>
+<div class="postbutton">
+    <button onclick="sweetalertclick()" type="button" class="btn btn-outline-danger">Remove This Post</button>
+</div>
+<form name="myForm" action="/delete" method="post">
+     <input type="hidden" name="id" value="<%= blogdata._id %>" />
+</form>
+<script>
+    function sweetalertclick()
+    {
+        const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire(
+      'Deleted!',
+      'Your post has been deleted.',
+      'success'
+    ).then(function()
+    {
+        document.forms["myForm"].submit();
+    })
+  } else if (
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire(
+      'Cancelled',
+      'Your post is safe :)',
+      'error'
+    )
+  }
+})
+    }
+</script>
+
 <%- include("partials/footer") -%>
