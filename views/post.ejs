@@ -14,8 +14,8 @@
     {
         const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
+    confirmButton: "btn btn-success sweetalertbutton",
+    cancelButton: "btn btn-danger sweetalertbutton"
   },
   buttonsStyling: false
 })
@@ -50,5 +50,5 @@ swalWithBootstrapButtons.fire({
 })
     }
 </script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%- include("partials/footer") -%>
