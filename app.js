@@ -65,15 +65,18 @@ app.get('/posts/:topic', (req, res) => {
 
 app.post("/compose",function(req,res)
 {
-  var titilevalue =_.upperFirst(_.lowerCase(req.body.item));
-  const blogobject= new blog({
-    title : titilevalue,
-    description : req.body.description
-  })
-
-  blogobject.save();
-
-  res.redirect('/');
+  if(req.body.item =="" || req.body.description=="")  res.render('compose');
+  else{
+    var titilevalue =_.upperFirst(_.lowerCase(req.body.item));
+    const blogobject= new blog({
+      title : titilevalue,
+      description : req.body.description
+    })
+  
+    blogobject.save();
+  
+    res.redirect('/');
+  }
 })
 
 app.post("/delete",function(req,res)
